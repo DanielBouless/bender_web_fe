@@ -1,4 +1,7 @@
-.App {
+.Style-app {
+  background-color: "#";
+  color: rgba(42, 48, 75, 0.822);
+  height: 100vh;
   text-align: center;
 }
 
