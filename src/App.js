@@ -9,12 +9,14 @@ const styleApp = {
   color: 'white',
   height: '100vh',
   textAlign: 'center',
-
 }
 
   return (
     <div style={styleApp}>
+      <div style={{padding:'10rem'}}>
       <SignUp/>
+
+      </div>
     </div>
   );
 }
