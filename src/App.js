@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
 import SignUp from './pages/SignUp';
+import Login from './pages/Login';
+import React from 'react';
+import { BrowserRouter, Routes, Route} from "react-router-dom";
+import './css/custom.css'
+
 
 function App() {
 
-const styleApp = {
-  backgroundColor: "#282c34",
-  color: 'white',
-  height: '100vh',
-  textAlign: 'center',
-}
-
-  return (
-    <div style={styleApp}>
-      <div style={{padding:'10rem'}}>
-      <SignUp/>
-
-      </div>
-    </div>
-  );
+return (
+  <BrowserRouter>
+    <Routes>
+      <Route path="/signup" element={<SignUp />} />
+      <Route path="/login" element={<Login />} />
+    </Routes>
+  </BrowserRouter>
+);
+  
 }
 
 export default App;
+

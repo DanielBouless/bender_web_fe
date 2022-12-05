@@ -2,7 +2,8 @@ import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import Button from "react-bootstrap/Button";
 import { useEffect, useState } from 'react'
-import '../Form.css'
+import '../css/custom.css'
+
 
 
 
@@ -27,19 +28,28 @@ useEffect(()=>{
 
 const onSubmit=(e)=>{
   e.preventDefault()
+
+const sendData = ( async (req, res)=>{
+    await fetch (`localhost:5050/users`, {
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(userCredentials)
+    })
+})
+sendData()
+
 }
 
     return (
+
       <Card style={{ width: "fit-content", margin: "auto" }}>
         <Card.Body>
-          <div className="form-box">
-          <Card.Title className='form-title'>Sign Up</Card.Title>
+          <Card.Title>Sign Up</Card.Title>
             <Form>
-              <Form.Group className="mb-3 form-field" controlId="formFirstname">
-                <div>
+              <Form.Group className="mb-3" controlId="formFirstname">
                 <Form.Label>First Name</Form.Label>
-
-                </div>
                 <Form.Control
                   value={firstname}
                   type="text"
@@ -48,12 +58,8 @@ const onSubmit=(e)=>{
                   required
                 />
               </Form.Group>
-
-              <Form.Group className="mb-3 form-field" controlId="formLastname">
-                <div>
+              <Form.Group className="mb-3" controlId="formLastname">
                 <Form.Label>Last Name</Form.Label>
-
-                </div>
                 <Form.Control
                   value={lastname}
                   type="text"
@@ -62,15 +68,11 @@ const onSubmit=(e)=>{
                   required
                 />
               </Form.Group>
-
               <Form.Group
-                className="mb-3 form-field"
+                className="mb-3"
                 controlId="formBasicEmail"
               >
-                <div>
                 <Form.Label>Email Address</Form.Label>
-
-                </div>
                 <Form.Control
                   value={email}
                   type="email"
@@ -79,14 +81,11 @@ const onSubmit=(e)=>{
                   required
                 />
               </Form.Group>
-
               <Form.Group
-                className="mb-3 form-field"
+                className="mb-3"
                 controlId="formBasicPassword"
-              ><div>
+              >
                 <Form.Label>Password</Form.Label>
-                
-                </div> 
                 <Form.Control
                   value={password}
                   type="password"
@@ -95,8 +94,6 @@ const onSubmit=(e)=>{
                   required
                 />
               </Form.Group>
-
-
               <Button
                 variant="primary"
                 type="submit"
@@ -105,7 +102,6 @@ const onSubmit=(e)=>{
                 Create Account
               </Button>
             </Form>
-          </div>
         </Card.Body>
       </Card>
     );
