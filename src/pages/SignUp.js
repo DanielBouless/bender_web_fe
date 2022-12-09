@@ -44,7 +44,7 @@ sendData()
 
     return (
 
-      <Card style={{ width: "fit-content", margin: "auto" }}>
+      <Card>
         <Card.Body>
           <Card.Title>Sign Up</Card.Title>
             <Form>

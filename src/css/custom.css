@@ -1,4 +1,14 @@
 @charset "UTF-8";
+.card {
+  width: fit-content;
+  margin: auto;
+  margin-top: 4rem;
+}
+
+.btn-primary {
+  margin: 2rem;
+}
+
 /*!
  * Bootstrap  v5.2.3 (https://getbootstrap.com/)
  * Copyright 2011-2022 The Bootstrap Authors

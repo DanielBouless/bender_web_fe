@@ -3,6 +3,16 @@ $body-bg: rgba(25, 26, 49, 0.986);
 $body-color: white;
 $card-bg: $body-bg;
 
+.card{
+    width: fit-content;
+    margin: auto;
+    margin-top: 4rem;
+}
+
+.btn-primary{
+        margin: 2rem;
+
+    }
 
 
 @import "../../node_modules/bootstrap/scss/bootstrap";
