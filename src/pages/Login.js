@@ -1,21 +1,47 @@
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useEffect, useState } from "react";
+import { useState, useContext } from "react";
 import "../css/custom.css";
+import { CurrentUser } from "../context/CurrentUser";
+import { useNavigate } from "react-router-dom";
+
 
 
 
 const Login = () => {
 
-    const [firstname, setFirstname] = useState("");
-    const [lastname, setLastname] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const { setCurrentUser } = useContext(CurrentUser);
+    const navigate = useNavigate()
 
 
-    const onSubmit=(e)=>{
-  e.preventDefault()
+    const [ credentials, setCredentials] = useState({
+      email: '',
+      password: '',
+    })
+    const [errorMessage, setErrorMessage ] = useState(null)
+
+    const onSubmit= async (e)=>{
+      e.preventDefault()
+
+      const response = await fetch('http://localhost:5050/authentication/', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(credentials)
+      })
+      const data = await response.json()
+      console.log(data)
+      if( response.status === 200 ){
+        setCurrentUser(data.user)
+        localStorage.setItem('token', data.token)
+        navigate('/')
+      } else{
+        setErrorMessage(data.message)
+      }
+
     }
 
     return (
@@ -32,10 +58,10 @@ const Login = () => {
                   <Form.Label>Email Address</Form.Label>
                 </div>
                 <Form.Control
-                  value={email}
+                  value={credentials.email}
                   type="email"
                   placeholder="Enter Email"
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => setCredentials({...credentials, email: e.target.value})}
                   required
                 />
               </Form.Group>
@@ -48,10 +74,10 @@ const Login = () => {
                   <Form.Label>Password</Form.Label>
                 </div>
                 <Form.Control
-                  value={password}
+                  value={credentials.password}
                   type="password"
                   placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => setCredentials({...credentials, password: e.target.value})}
                   required
                 />
               </Form.Group>

@@ -3,11 +3,11 @@ import { createContext, useState, useEffect } from "react";
 export const CurrentUser = createContext();
 
 function CurrentUserProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState('');
   useEffect(() => {
     const getLoggedInUser = async () => {
       let response = await fetch(
-        "http://localhost:5000/authentication/profile",
+        "http://localhost:5050/authentication/profile",
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -19,7 +19,7 @@ function CurrentUserProvider({ children }) {
     };
     getLoggedInUser();
   }, []);
-  window.setCurrentUser = setCurrentUser;
+
   return (
     <CurrentUser.Provider value={{ currentUser, setCurrentUser }}>
       {children}

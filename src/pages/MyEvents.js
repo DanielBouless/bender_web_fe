@@ -1,10 +1,15 @@
+import CreateEventForm from "../components/CreateEventForm";
+import ViewEventAttend from "../components/ViewEventAttend";
+import ViewInvites from "../components/ViewInvites";
+import ViewEventsCreated from "../components/ViewEventsCreated";
 
 const MyEvents = ()=>{
     return (
       <div>
-        <div>CREATE EVENT BUTTON </div>
-        <div> DISPLAY EVENTS GOING TO</div>
-        <div> DISPLAY EVENTS YOU CREATED</div>
+        <CreateEventForm />
+        <ViewInvites/>
+        <ViewEventAttend/>
+        <ViewEventsCreated/>
       </div>
     );
 }
